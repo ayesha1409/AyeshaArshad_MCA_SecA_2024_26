@@ -1,1 +1,903 @@
 
+SUBJECT: COMPUTER PROGRAMMING  
+ASSIGNMENT 1 
+COMPUTER PROGRAMMING WITH C 
+MCA102 
+TOPIC:C BASICS AND OPERATORS 
+1    WRITE A PROGRAM TO FIND THE SUM AND AVERAGE OF THREE NUMBERS 
+#
+ include<stdio.h> 
+void main() 
+{ 
+int num1,num2,num3,sum; 
+float average; 
+printf("enter 3 numbers"); 
+scanf("%d%d%d", &num1, &num2, &num3);
+sum=num1+num2+num3;
+average=sum/3.0;
+printf("sum= %d", sum);
+printf("average= %f", average);
+
+2 Write a C program to find the sum of individual digits of a given positive
+integer.
+#include<stdio.h>
+void main()
+{
+ int n,sum=0;
+ printf("enter a +ve integer"); // enter a integer value
+ scanf("%d",&n);
+ while(n>0) // checks the condition
+ {
+ sum=sum+n%10; // sum + remainder value
+ n=n/10;
+
+ }
+ printf("sum of individual
+digits of a positive integer is %d",sum); // prints the sum of individual digits
+}
+
+3) Write a C program to generate the first n terms of the Fibonacci sequence.
+#include <stdio.h>
+int main() {
+ int n, t1 = 0, t2 = 1, nextTerm;
+ printf("Enter the number of terms: ");
+scanf("%d", &n);
+ printf("Fibonacci Series: %d, %d, ", t1, t2);
+ for (int i = 3; i <= n; ++i) {
+ nextTerm = t1 + t2;
+ printf("%d, ", nextTerm);
+ t1 = t2;
+ t2 = nextTerm;
+}
+ return 0;
+
+4 ) Write a C program to generate prime numbers between 1 to n
+#include<stdio.h>
+void main()
+{
+ int i,j,n;
+ printf("Enter the number till which you want prime numbers\n");
+ scanf("%d",&n);
+ printf("Prime numbers are:-\n");
+ for(i=2;i<=n;i++)
+ {
+ {
+ int c=0;
+ for(j=1;j<=i;j++)
+ {
+
+if(i%j==0)
+
+{
+c++;
+}
+
+} 
+if(c==2)
+{
+printf("%d ",i);
+
+}
+ }
+}
+
+5. Write a C program to check whether a given number is an Armstrong
+number or not.
+#include <stdio.h>
+void main() {
+ int num, og, remainder, result = 0;
+ printf("Enter the number: ");
+ scanf("%d",&num);
+ og = num;
+ while (og != 0){
+ remainder = og % 10;
+ result += remainder * remainder * remainder;
+ og /= 10;
+ }
+ if (result == num)
+ printf("%d is an Armstrong number", num);
+ else
+ printf("%d is not an Armstrong number.", num);
+}
+
+6 . Write a C program to evaluate the algebraic expression (ax+b)/(ax-b)
+#include <stdio.h>
+int main() {
+ int a, b, x;
+ int result;
+ printf("Enter the value of a: ");
+ scanf("%d", &a);
+ printf("Enter the value of b: ");
+ scanf("%d", &b);
+ printf("Enter the value of x: ");
+ scanf("%d", &x);
+ result = (a * x + b) / (a * x - b);
+ printf("The result of the expression (ax + b) / (ax - b) is: %d", result);
+ return 0;
+
+7 . Write a C program to check if the given number is a perfect number.
+#include <stdio.h>
+int main() {
+ int num, sum = 0;
+ printf("Enter a positive integer: ");
+ scanf("%d", &num);
+ for (int i = 1; i <num ; i++) {
+ if (num % i == 0) {
+ sum = sum+i;
+ }
+ }
+if (sum == num) {
+ printf("is a perfect number");
+ } else {
+ printf("is not a perfect number");
+ }
+return 0;
+}
+8 . Write a C program to check if a given number is a strong number.
+#include <stdio.h>
+int factorial(int n) {
+ int fact = 1;
+ for (int i = 1; i <= n; i++) {
+ fact *= i;
+ }
+ return fact;
+}
+int main() {
+ int num, og, remaiint main() {
+ int num, og, remainder, sum = 0;
+ printf("Enter a positive integer: ");
+ scanf("%d", &num);
+ og = num;
+ while (num > 0) {
+ remainder = num % 10;
+ sum += factorial(remainder);
+ num /= 10;
+ }
+
+ if (sum == og) {
+ printf("%d is a strong number.\n", og);
+ } else {
+ printf("%d is not a strong number.\n", og);
+ }
+ return 0;
+}
+9 Write a program to print your name without using any semicolons in the
+program.
+#include<stdio.h>
+int main()
+{
+if(printf("AYESHA ARSHAD")){}
+return 0;
+}
+10. Write a program to convert temperatures in Celsius to Fahrenheit and
+vice-versa.
+#include<stdio.h>
+void main()
+{
+ float celsius,fahrenheit;
+ printf("\n Enter the Temparature in Celsius : ");
+ scanf("%f",&celsius);
+fahrenheit = (1.8 * celsius) + 32;
+ printf("\n Temperature in Fahrenheit : %f ",fahrenheit);
+}
+
+11. Write a C program to check check whether a number is a palindrome or
+not
+#include <stdio.h>
+void main() {
+ /* Variable Declaration and Initialization. */
+ int input, reverse = 0, rem, temp;
+ /* taking user input */
+ printf("Please enter an integer number:");
+ scanf("%d", & input);
+ temp = input;
+ /* Reverse the number using while loop */
+ while (temp != 0) {
+ rem = temp % 10;
+reverse = reverse * 10 + rem;
+ temp /= 10;
+ }
+ /* Check the reversed number with the user input */
+ if (reverse == input)
+ printf("%d is a palindrome number.", input);
+ else
+ printf("%d is not a palindrome number.", input);
+}
+12 . Write a C program to find the maximum between two numbers.
+#include <stdio.h>
+int main()
+{
+ int num1, num2;
+ /* Input two numbers from user */
+ printf("Enter two numbers: ");
+scanf("%d%d", &num1, &num2);
+ /* If num1 is maximum */
+ if(num1 > num2)
+ {
+ printf("%d is maximum", num1);
+ }
+ /* If num2 is maximum */
+ if(num2 > num1)
+ {
+ printf("%d is maximum", num2);
+ }
+ /* Additional condition check for equality *
+if(num1 == num2)
+ {
+ printf("Both are equal");
+ }
+ return 0;
+}
+
+13. Write a C program to find the maximum between three numbers.
+#include <stdio.h>
+int main()
+{
+ int num1, num2, num3, max;
+ /* Input three numbers from user */
+ printf("Enter three numbers: ");
+ scanf("%d%d%d", &num1, &num2, &num3);
+ if(num1 > num3)
+ {
+ /* If num1 > num2 and num1 > num3 */
+max = num1;
+ }
+ else
+ {
+/* If num1 > num2 but num1 > num3 is not true */
+ max = num3;
+ }
+ }
+ else
+ {
+ if(num2 > num3)
+ {
+ /* If num1 is not > num2 and num2 > num3 */
+ max = num2;
+ }
+ else
+ {
+ /* If num1 is not > num2 and num2 > num3 */
+ max = num3;
+ }
+/* Print maximum value */
+ printf("Maximum among all three numbers = %d", max);
+ return 0;
+}
+
+14. Write a c program to check if a number is positive negative or zero.
+#include <stdio.h>
+int main()
+{
+ int num;
+
+ /* Input number from user */
+ printf("Enter any number: ");
+ scanf("%d", &num);
+
+ if(num > 0)
+{
+ printf("Number is POSITIVE");
+ }
+ if(num < 0)
+ {
+ printf("Number is NEGATIVE");
+ }
+ if(num == 0)
+{
+ printf("Number is ZERO");
+ }
+ return 0;
+}
+
+15. Write a C program to check whether a number is divisible by 5 and 11 or
+not within the
+range of 100 to 500
+/**
+* C program to check divisibility of any number
+*/
+#include <stdio.h>
+int main()
+{
+ int num;
+ /* Input number from user */
+printf("Enter any number: ");
+ scanf("%d", &num);
+ /*
+ * If num modulo division 5 is 0
+ * and num modulo division 11 is 0 then
+ * the number is divisible by 5 and 11 both
+ */
+ if((num % 5 == 0) && (num % 11 == 0))
+ {
+ printf("Number is divisible by 5 and 11");
+ }
+ else
+ {
+ printf("Number is not divisible by 5 and 11");
+ }
+ return 0;
+}
+
+16 . Write a C program to check whether a number is even or odd
+/**
+* C program to check even or odd number
+*/
+#include <stdio.h>
+int main()
+{
+ int num;
+ /* Input number from user */number to check even or odd: ");
+ scanf("%d", &num);
+
+ /* Check if the number is divisible by 2 then it is even */
+ if(num % 2 == 0)
+ {
+ /* num % 2 is 0 */
+
+ printf("Enter any Number is Even.");
+ }
+ else
+ {
+ /* num % 2 is 1 */
+ printf("Number is Odd.");
+}
+ return 0;
+}
+17. write a c program to check whether leap year
+#include <stdio.h>
+int main()
+{
+ int year;
+ /* Input year from user */
+ printf("Enter year : ");
+ scanf("%d", &year);
+ if(((year % 4 == 0) && (year % 100 !=0)) || (year % 400==0))
+ {
+ printf("LEAP YEAR");
+}
+ else
+ {
+ printf("COMMON YEAR");
+ }
+ return 0;
+}
+18. Write a C program to check whether a character is alphabet or not
+/**
+* C program to check whether a character is alphabet or not
+*/
+#include <stdio.h>
+int main()
+{
+ char ch;
+ /* Input a character from user */
+ printf("Enter any character: ");
+ scanf("%c", &ch);
+
+ if((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z'))
+ {
+ printf("Character is an ALPHABET.");
+ }
+ else
+ {
+ printf("Character is NOT ALPHABET.");
+ }
+ return 0;
+}
+19. Write a C program to input any alphabet and check whether it is a vowel
+or consonant.
+#include <stdio.h>
+int main()
+{
+ char ch;
+ /* Input chara/* Input character from user */
+ printf("Enter any character: ");
+ scanf("%c", &ch);
+ /* Condition for vowel */
+ if(ch=='a' || ch=='e' || ch=='i' || ch=='o' || ch=='u' ||
+ ch=='A' || ch=='E' || ch=='I' || ch=='O' || ch=='U')
+ {
+ printf("'%c' is Vowel.", ch);
+ }
+ else if((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z'))
+ {
+ /* Condition for consonant */
+/* Condition for consonant */
+ printf("'%c' is Consonant.", ch);
+ }
+ else
+ {
+ printf("'%c' is not an alphabet.", ch);
+ }
+ return 0;
+}
+20. Write a C program to input any character and check whether it is an
+alphabet, digit, or
+special character.
+#include <stdio.h>
+int main()
+{
+ char ch;
+ /* Input character from user */
+ printf("Enter any character: ");
+ scanf("%c", &ch);
+/* Alphabet check */
+ if((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z'))
+ {
+ printf("'%c' is alphabet.", ch);
+ }
+ else if(ch >= '0' && ch <= '9')
+ {
+ printf("'%c' is digit.", ch);
+ }
+ else
+ {
+ printf("'%c' is special character.", ch);
+ }
+ return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+ASSIGNEMENT - 2
+1.Write a c program to add,subtract,multiply and divide two integars using a user-defined type function with a return type.
+#include <stdio.h>
+
+// Function prototypes
+int add(int a, int b);
+int subtract(int a, int b);
+int multiply(int a, int b);
+float divide(int a, int b);
+
+int main() {
+    int num1, num2;
+    int sum, diff, prod;
+    float quotient;
+
+    // Input: Two integers
+    printf("Enter two integers: ");
+    scanf("%d %d", &num1, &num2);
+
+    // Perform operations
+    sum = add(num1, num2);
+    diff = subtract(num1, num2);
+    prod = multiply(num1, num2);
+    
+    // Check if division is possible
+    if (num2 != 0) {
+        quotient = divide(num1, num2);
+    } else {
+        printf("Error: Division by zero is not allowed.\n");
+    }
+
+    // Output results
+    printf("Addition: %d + %d = %d\n", num1, num2, sum);
+    printf("Subtraction: %d - %d = %d\n", num1, num2, diff);
+    printf("Multiplication: %d * %d = %d\n", num1, num2, prod);
+    
+    if (num2 != 0) {
+        printf("Division: %d / %d = %.2f\n", num1, num2, quotient);
+    }
+
+    return 0;
+}
+
+// Function definitions
+int add(int a, int b) {
+    return a + b;
+}
+
+int subtract(int a, int b) {
+    return a - b;
+}
+
+int multiply(int a, int b) {
+    return a * b;
+}
+
+float divide(int a, int b) {
+    return (float)a / b;
+}
+
+
+ 
+
+2.Write a c program to calculate  the sum of the first 20 natural  numbers using a recursive function.
+#include <stdio.h>
+
+// Function prototype
+int sum(int n);
+
+int main() {
+    int result;
+
+    // Calculate the sum of the first 20 natural numbers
+    result = sum(20);
+
+    // Output the result
+    printf("The sum of the first 20 natural numbers is: %d\n", result);
+
+    return 0;
+}
+
+// Recursive function to calculate the sum of the first n natural numbers
+int sum(int n) {
+    // Base case: if n is 1, return 1
+    if (n == 1) {
+        return 1;
+    }
+    // Recursive case: sum of first n numbers is n + sum of first (n-1) numbers
+    return n + sum(n - 1);
+}
+ 
+3.Write a c program to generate a Fibanacci series using a recursive function.
+#include <stdio.h>
+
+// Function prototype for the recursive Fibonacci function
+int fibonacci(int n);
+
+int main() {
+    int n;
+
+    // Input: Number of terms in the Fibonacci series
+    printf("Enter the number of terms for the Fibonacci series: ");
+    scanf("%d", &n);
+
+    // Validate input
+    if (n <= 0) {
+        printf("Number of terms must be a positive integer.\n");
+    } else {
+        printf("Fibonacci Series up to %d terms:\n", n);
+
+        // Generate and print Fibonacci series
+        for (int i = 0; i < n; i++) {
+            printf("%d ", fibonacci(i));
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
+
+// Recursive function to calculate the nth Fibonacci number
+int fibonacci(int n) {
+    // Base cases
+    if (n == 0) {
+        return 0;
+    } else if (n == 1) {
+        return 1;
+    }
+    // Recursive case
+    return fibonacci(n - 1) + fibonacci(n - 2);
+}
+ 
+4.Write a c program to swap two integars using call-by-value and call-by-function.
+#include <stdio.h>
+
+// Function prototypes
+void swapByValue(int a, int b);
+void swapByReference(int *a, int *b);
+
+int main() {
+    int x, y;
+
+    // Input: Two integers
+    printf("Enter two integers to swap: ");
+    scanf("%d %d", &x, &y);
+
+    // Display original values
+    printf("Original values: x = %d, y = %d\n", x, y);
+
+    // Swap using call-by-value
+    printf("\nSwapping using call-by-value:\n");
+    swapByValue(x, y);
+    // Values of x and y remain unchanged in the calling function
+    printf("After swapByValue: x = %d, y = %d\n", x, y);
+
+    // Swap using call-by-reference
+    printf("\nSwapping using call-by-reference:\n");
+    swapByReference(&x, &y);
+    // Values of x and y are modified in the calling function
+    printf("After swapByReference: x = %d, y = %d\n", x, y);
+
+    return 0;
+}
+
+// Function to swap two integers using call-by-value
+void swapByValue(int a, int b) {
+    int temp;
+    temp = a;
+    a = b;
+    b = temp;
+    // Values of a and b are swapped
+ 
+
+5.Write a C program to find the sum of the digits of the number using  a recursive function.
+#include <stdio.h>
+
+// Function prototype
+int sumOfDigits(int num);
+
+int main() {
+    int number, result;
+
+    // Input: A number from the user
+    printf("Enter a number: ");
+    scanf("%d", &number);
+
+    // Compute the sum of the digits
+    result = sumOfDigits(number);
+
+    // Output the result
+    printf("The sum of the digits of %d is: %d\n", number, result);
+
+    return 0;
+}
+
+// Recursive function to find the sum of the digits of a number
+int sumOfDigits(int num) {
+    // Handle negative numbers by taking the absolute value
+    if (num < 0) {
+        num = -num;
+    }
+
+    // Base case: if the number is 0, the sum of the digits is 0
+    if (num == 0) {
+        return 0;
+    }
+
+    // Recursive case: last digit + sum of digits of the number without the last digit
+    return (num % 10) + sumOfDigits(num / 10);
+}
+ 
+
+6.Write a c program  to read an integar number and print the reverse of that number using recursion.
+#include <stdio.h>
+
+// Function prototypes
+void reverseNumber(int num);
+int reverseNumberHelper(int num, int reversed);
+
+int main() {
+    int number;
+
+    // Input: An integer from the user
+    printf("Enter an integer: ");
+    scanf("%d", &number);
+
+    // Reverse and print the number
+    printf("The reverse of %d is: ", number);
+    reverseNumber(number);
+    printf("\n");
+
+    return 0;
+}
+
+// Function to reverse the digits of the number
+void reverseNumber(int num) {
+    // Call the helper function with initial reversed value as 0
+    reverseNumberHelper(num, 0);
+}
+
+// Helper function to reverse the digits of the number
+int reverseNumberHelper(int num, int reversed) {
+    // Base case: when num becomes 0, print the reversed number
+    if (num == 0) {
+        printf("%d", reversed);
+        return reversed;
+    }
+    
+    // Recursive case: append last digit of num to reversed
+    int lastDigit = num % 10;
+    reversed = reversed * 10 + lastDigit;
+    return reverseNumberHelper(num / 10, reversed);
+}
+ 
+7.Using function,write a c program to find the maximum and minimum between  two numbers.
+#include <stdio.h>
+
+// Function prototypes
+int findMaximum(int a, int b);
+int findMinimum(int a, int b);
+
+int main() {
+    int num1, num2;
+    int max, min;
+
+    // Input: Two integers from the user
+    printf("Enter two integers: ");
+    scanf("%d %d", &num1, &num2);
+
+    // Find the maximum and minimum using the defined functions
+    max = findMaximum(num1, num2);
+    min = findMinimum(num1, num2);
+
+    // Output the results
+    printf("The maximum of %d and %d is: %d\n", num1, num2, max);
+    printf("The minimum of %d and %d is: %d\n", num1, num2, min);
+
+    return 0;
+}
+
+// Function to find the maximum of two integers
+int findMaximum(int a, int b) {
+    return (a > b) ? a : b;
+}
+
+// Function to find the minimum of two integers
+int findMinimum(int a, int b) {
+    return (a < b) ? a : b;
+}
+ 
+8.Write a c program to check whether  a number  is even or odd using function.
+#include <stdio.h>
+
+// Function prototype
+void checkEvenOrOdd(int num);
+
+int main() {
+    int number;
+
+    // Input: An integer from the user
+    printf("Enter an integer: ");
+    scanf("%d", &number);
+
+    // Check if the number is even or odd
+    checkEvenOrOdd(number);
+
+    return 0;
+}
+
+// Function to check if a number is even or odd
+void checkEvenOrOdd(int num) {
+    // Check if the number is divisible by 2
+    if (num % 2 == 0) {
+        printf("%d is even.\n", num);
+    } else {
+        printf("%d is odd.\n", num);
+    }
+}
+ 
+9.Write a c program to check whether  a number is prime,Armstrong or perfect number using function.
+#include <stdio.h>
+#include <math.h>
+
+// Function prototypes
+int isPrime(int num);
+int isArmstrong(int num);
+int isPerfect(int num);
+
+int main() {
+    int number;
+
+    // Input: An integer from the user
+    printf("Enter an integer: ");
+    scanf("%d", &number);
+
+    // Check if the number is prime
+    if (isPrime(number)) {
+        printf("%d is a prime number.\n", number);
+    } else {
+        printf("%d is not a prime number.\n", number);
+    }
+
+    // Check if the number is an Armstrong number
+    if (isArmstrong(number)) {
+        printf("%d is an Armstrong number.\n", number);
+    } else {
+        printf("%d is not an Armstrong number.\n", number);
+    }
+
+    // Check if the number is a perfect number
+    if (isPerfect(number)) {
+        printf("%d is a perfect number.\n", number);
+    } else {
+        printf("%d is not a perfect number.\n", number);
+    }
+
+    return 0;
+}
+
+// Function to check if a number is prime
+int isPrime(int num) {
+    if (num <= 1) return 0; // 0 and 1 are not prime numbers
+    if (num == 2) return 1; // 2 is the only even prime number
+    if (num % 2 == 0) return 0; // Other even numbers are not prime
+
+    // Check for factors from 3 to sqrt(num)
+    for (int i = 3; i <= sqrt(num); i += 2) {
+        if (num % i == 0) return 0;
+    }
+    return 1;
+}
+
+// Function to check if a number is an Armstrong number
+int isArmstrong(int num) {
+    int originalNum = num;
+    int sum = 0;
+    int digits = 0;
+
+    // Count the number of digits
+    while (num != 0) {
+        num /= 10;
+        digits++;
+    }
+
+    num = originalNum;
+
+    // Compute the sum of each digit raised to the power of the number of digits
+    while (num != 0) {
+        int digit = num % 10;
+        sum += pow(digit, digits);
+        num /= 10;
+    }
+
+    return sum == originalNum;
+}
+
+// Function to check if a number is perfect
+int isPerfect(int num) {
+    int sum = 0;
+
+    // Find the sum of proper divisors
+    for (int i = 1; i <= num / 2; i++) {
+        if (num % i == 0) {
+            sum += i;
+        }
+    }
+
+    return sum == num;
+}
+
+10.Write a c program to find the power of any number using recursion.
+
+
+#include <stdio.h>
+
+// Function prototype
+int power(int base, int exponent);
+
+int main() {
+    int base, exponent, result;
+
+    // Input: Base and exponent from the user
+    printf("Enter the base: ");
+    scanf("%d", &base);
+    printf("Enter the exponent: ");
+    scanf("%d", &exponent);
+
+    // Compute the power using the recursive function
+    result = power(base, exponent);
+
+    // Output the result
+    printf("%d raised to the power of %d is: %d\n", base, exponent, result);
+
+    return 0;
+}
+
+// Recursive function to calculate the power of a number
+int power(int base, int exponent) {
+    // Base case: any number raised to the power of 0 is 1
+    if (exponent == 0) {
+        return 1;
+    }
+
+    // Recursive case: base * base^(exponent-1)
+    return base * power(base, exponent - 1);
+}
+ 
+
+
+
+
+
+
+
