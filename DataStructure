@@ -1,1 +1,962 @@
+Introduction To Data Structure 
+Assignment 1
+1.Write a C program to Print An Array.
+#include <stdio.h>
+
+int main() {
+    // Define and initialize the array
+    int array[] = {10, 20, 30, 40, 50};
+    int length = sizeof(array) / sizeof(array[0]); // Calculate the number of elements in the array
+
+    // Print the array elements
+    printf("Array elements are:\n");
+    for (int i = 0; i < length; i++) {
+        printf("%d ", array[i]);
+    }
+
+    printf("\n"); // Print a newline for clean output
+    return 0;
+}
+Output:Array elements are:
+10 20 30 40 50 
+
+2.Write a C program  to check whether a given string is Palindrome or not.
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>  // For tolower() function
+
+#define MAX_LENGTH 100
+
+// Function to check if a string is a palindrome
+int isPalindrome(char str[]) {
+    int left = 0;
+    int right = strlen(str) - 1;
+
+    while (left < right) {
+        // Skip non-alphanumeric characters
+        while (left < right && !isalnum(str[left])) left++;
+        while (left < right && !isalnum(str[right])) right--;
+
+        // Compare characters
+        if (tolower(str[left]) != tolower(str[right])) {
+            return 0; // Not a palindrome
+        }
+
+        left++;
+        right--;
+    }
+
+    return 1; // Is a palindrome
+}
+
+int main() {
+    char str[MAX_LENGTH];
+
+    // Input string from the user
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin);
+
+    // Remove newline character if present
+    str[strcspn(str, "\n")] = 0;
+
+    // Check if the string is a palindrome
+    if (isPalindrome(str)) {
+        printf("\"%s\" is a palindrome.\n", str);
+    } else {
+        printf("\"%s\" is not a palindrome.\n", str);
+    }
+
+    return 0;
+}
+Output-Enter a string: Racecar
+"Racecar" is a palindrome.
+
+3.Write a C program to convert temperature from degree Centrigrade to Fahrenheit.
+#include <stdio.h>
+
+int main() {
+    float celsius, fahrenheit;
+
+    // Input temperature in Celsius from the user
+    printf("Enter temperature in Celsius: ");
+    scanf("%f", &celsius);
+
+    // Convert Celsius to Fahrenheit
+    fahrenheit = (celsius * 9 / 5) + 32;
+
+    // Display the result
+    printf("%.2f Celsius is equal to %.2f Fahrenheit.\n", celsius, fahrenheit);
+
+    return 0;
+}
+Output-Enter temperature in Celsius: 25
+25.00 Celsius is equal to 77.00 Fahrenheit.
+
+4.Write a C program to sort an array.
+#include <stdio.h>
+
+#define SIZE 10
+
+void bubbleSort(int arr[], int n) {
+    int i, j, temp;
+    for (i = 0; i < n - 1; i++) {
+        for (j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                // Swap arr[j] and arr[j + 1]
+                temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+
+void printArray(int arr[], int size) {
+    int i;
+    for (i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    int arr[SIZE] = {64, 34, 25, 12, 22, 11, 90, 45, 78, 56};
+    
+    printf("Original array:\n");
+    printArray(arr, SIZE);
+
+    bubbleSort(arr, SIZE);
+
+    printf("Sorted array:\n");
+    printArray(arr, SIZE);
+
+    return 0;
+}
+5.Write a C program to print the largest and second largest element of the array.
+#include <stdio.h>
+#include <limits.h> // For INT_MIN
+
+// Function to find the largest and second largest elements in an array
+void findLargestAndSecondLargest(int arr[], int size, int *largest, int *secondLargest) {
+    if (size < 2) {
+        printf("Array must have at least two elements.\n");
+        return;
+    }
+
+    *largest = INT_MIN;
+    *secondLargest = INT_MIN;
+
+    for (int i = 0; i < size; i++) {
+        if (arr[i] > *largest) {
+            *secondLargest = *largest;
+            *largest = arr[i];
+        } else if (arr[i] > *secondLargest && arr[i] != *largest) {
+            *secondLargest = arr[i];
+        }
+    }
+
+   
+    if (*secondLargest == INT_MIN) {
+        printf("No distinct second largest element found.\n");
+    }
+}
+
+int main() {
+    int arr[] = {12, 35, 1, 10, 34, 1};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    int largest, secondLargest;
+
+    findLargestAndSecondLargest(arr, size, &largest, &secondLargest);
+
+    printf("Largest element is %d\n", largest);
+    printf("Second largest element is %d\n", secondLargest);
+
+    return 0;
+}
+Largest element is 35
+Second largest element is 34
+6.Write a C program to display the Fibonacci Series.
+#include <stdio.h>
+
+
+void printFibonacciSeries(int n) {
+    if (n <= 0) {
+        printf("The number of terms must be a positive integer.\n");
+        return;
+    }
+    
+   
+    int first = 0, second = 1, next;
+
+    
+    printf("Fibonacci Series: %d", first);
+    
+    if (n > 1) {
+        
+        printf(", %d", second);
+    }
+
+   
+    for (int i = 3; i <= n; i++) {
+        next = first + second;
+        printf(", %d", next);
+        first = second;
+        second = next;
+    }
+    
+    printf("\n");
+}
+
+int main() {
+    int terms;
+
+   
+    printf("Enter the number of terms in the Fibonacci series: ");
+    scanf("%d", &terms);
+
+   
+    printFibonacciSeries(terms);
+
+    return 0;
+}
+Enter the number of terms in the Fibonacci series: 10
+Fibonacci Series: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34
+
+7.Write a C program to print the reverse array.
+#include <stdio.h>
+
+
+void reverseAndPrintArray(int arr[], int size) {
+    printf("Reversed Array: ");
+    
+  
+    for (int i = size - 1; i >= 0; i--) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    
+    int arr[] = {1, 2, 3, 4, 5};
+    int size = sizeof(arr) / sizeof(arr[0]); // Calculate the number of elements in the array
+
+   
+    reverseAndPrintArray(arr, size);
+
+    return 0;
+}
+Reversed Array: 5 4 3 2 1
+8.Write a C program to check the sum of all elements pf an array.
+#include <stdio.h>
+
+
+int calculateSum(int arr[], int size) {
+    int sum = 0;
+
+   
+    for (int i = 0; i < size; i++) {
+        sum += arr[i];
+    }
+
+    return sum;
+}
+
+int main() {
+    
+    int arr[] = {10, 20, 30, 40, 50};
+    int size = sizeof(arr) / sizeof(arr[0]); // Calculate the number of elements in the array
+
+   
+    int sum = calculateSum(arr, size);
+
+   
+    printf("Sum of all elements in the array: %d\n", sum);
+
+    return 0;
+}
+Sum of all elements in the array: 150
+9.Write a C program to check the duplicate number in array.
+#include <stdio.h>
+#include <stdbool.h>
+
+
+bool hasDuplicates(int arr[], int size) {
+   
+    for (int i = 0; i < size - 1; i++) {
+        for (int j = i + 1; j < size; j++) {
+            if (arr[i] == arr[j]) {
+                return true; // Duplicate found
+            }
+        }
+    }
+    return false; // No duplicates found
+}
+
+int main() {
+ 
+    int arr[] = {1, 2, 3, 4, 5, 6, 3}; // You can change this to test different arrays
+    int size = sizeof(arr) / sizeof(arr[0]); // Calculate the number of elements in the array
+
+   
+    if (hasDuplicates(arr, size)) {
+        printf("The array contains duplicates.\n");
+    } else {
+        printf("The array does not contain any duplicates.\n");Wr
+    }
+
+    return 0;
+}
+int arr[] = {1, 2, 3, 4, 5, 6, 3};
+The array contains duplicates.
+
+
+Assignment-2
+1.Write a C program to read a 2D array and then represent the same array as Sparse matrics.
+#include <stdio.h>
+
+
+void printSparseMatrix(int sparseMatrix[][3], int nonZeroCount) {
+    printf("Sparse Matrix Representation:\n");
+    printf("Row\tColumn\tValue\n");
+    for (int i = 0; i < nonZeroCount; i++) {
+        printf("%d\t%d\t%d\n", sparseMatrix[i][0], sparseMatrix[i][1], sparseMatrix[i][2]);
+    }
+}
+
+int main() {
+    int rows, cols;
+    printf("Enter the number of rows and columns of the matrix: ");
+    scanf("%d %d", &rows, &cols);
+
+    int matrix[rows][cols];
+    printf("Enter the elements of the matrix:\n");
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            scanf("%d", &matrix[i][j]);
+        }
+    }
+
+   
+    int nonZeroCount = 0;
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            if (matrix[i][j] != 0) {
+                nonZeroCount++;
+            }
+        }
+    }
+
+   
+    int sparseMatrix[nonZeroCount][3];
+    int index = 0;
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            if (matrix[i][j] != 0) {
+                sparseMatrix[index][0] = i;
+                sparseMatrix[index][1] = j;
+                sparseMatrix[index][2] = matrix[i][j];
+                index++;
+            }
+        }
+    }
+
+    // Print the sparse matrix representation
+    printSparseMatrix(sparseMatrix, nonZeroCount);
+
+    return 0;
+}
+Enter the number of rows and columns of the matrix: 4 4
+Enter the elements of the matrix:
+0 0 3 0
+0 0 0 4
+5 0 0 0
+0 6 0 0
+Sparse Matrix Representation:
+Row    Column Value
+0      2      3
+1      3      4
+2      0      5
+3      1      6
+
+2.Write a C program to Pass an array to function using Call by Value update the array values in the function print the array elements both in the function and in the calling function.
+#include <stdio.h>
+
+// Function to update array elements
+void updateArray(int arr[], int size) {
+    // Update array values
+    for (int i = 0; i < size; i++) {
+        arr[i] += 10; // Example update: add 10 to each element
+    }
+
+    // Print the array elements inside the function
+    printf("Array elements inside the function:\n");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    // Define and initialize the array
+    int arr[] = {1, 2, 3, 4, 5};
+    int size = sizeof(arr) / sizeof(arr[0]); // Calculate the number of elements in the array
+
+    // Print the array elements before calling the function
+    printf("Array elements before function call:\n");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    // Call the function to update the array
+    updateArray(arr, size);
+
+    // Print the array elements after calling the function
+    printf("Array elements after function call:\n");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
+Array elements before function call:
+1 2 3 4 5 
+Array elements inside the function:
+11 12 13 14 15 
+Array elements after function call:
+11 12 13 14 15 
+
+3.Write a C program  to pass an array to a function using  Call by Refernce update the array values  in the function print the array elements both in the function and in the calling function.
+#include <stdio.h>
+
+// Function to update array elements by reference
+void updateArray(int *arr, int size) {
+    // Update array values
+    for (int i = 0; i < size; i++) {
+        arr[i] += 10; // Example update: add 10 to each element
+    }
+
+    // Print the array elements inside the function
+    printf("Array elements inside the function:\n");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    // Define and initialize the array
+    int arr[] = {1, 2, 3, 4, 5};
+    int size = sizeof(arr) / sizeof(arr[0]); // Calculate the number of elements in the array
+
+    // Print the array elements before calling the function
+    printf("Array elements before function call:\n");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    // Call the function to update the array
+    updateArray(arr, size);
+
+    // Print the array elements after calling the function
+    printf("Array elements after function call:\n");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
+Array elements before function call:
+1 2 3 4 5 
+Array elements inside the function:
+11 12 13 14 15 
+Array elements after function call:
+11 12 13 14 15 
+4.Write a program that reads 2D matrices from the console verifies if metrices multiplication is possible or not.Then multiplies the matrices and prints the 3rd metrices.
+#include <stdio.h>
+
+// Function to read a matrix
+void readMatrix(int matrix[][10], int rows, int cols) {
+    printf("Enter the elements of the matrix:\n");
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            scanf("%d", &matrix[i][j]);
+        }
+    }
+}
+
+// Function to print a matrix
+void printMatrix(int matrix[][10], int rows, int cols) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            printf("%d ", matrix[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+// Function to multiply two matrices
+void multiplyMatrices(int mat1[][10], int mat2[][10], int res[][10], int r1, int c1, int r2, int c2) {
+    // Initialize result matrix to 0
+    for (int i = 0; i < r1; i++) {
+        for (int j = 0; j < c2; j++) {
+            res[i][j] = 0;
+        }
+    }
+
+    // Perform matrix multiplication
+    for (int i = 0; i < r1; i++) {
+        for (int j = 0; j < c2; j++) {
+            for (int k = 0; k < c1; k++) {
+                res[i][j] += mat1[i][k] * mat2[k][j];
+            }
+        }
+    }
+}
+
+int main() {
+    int mat1[10][10], mat2[10][10], res[10][10];
+    int r1, c1, r2, c2;
+
+    // Read dimensions and matrices
+    printf("Enter the number of rows and columns for the first matrix: ");
+    scanf("%d %d", &r1, &c1);
+    printf("Enter the number of rows and columns for the second matrix: ");
+    scanf("%d %d", &r2, &c2);
+
+    if (c1 != r2) {
+        printf("Matrix multiplication is not possible. The number of columns of the first matrix must be equal to the number of rows of the second matrix.\n");
+        return 1;
+    }
+
+    printf("Enter the elements of the first matrix:\n");
+    readMatrix(mat1, r1, c1);
+
+    printf("Enter the elements of the second matrix:\n");
+    readMatrix(mat2, r2, c2);
+
+    // Multiply matrices
+    multiplyMatrices(mat1, mat2, res, r1, c1, r2, c2);
+
+    // Print the result matrix
+    printf("Resultant matrix after multiplication:\n");
+    printMatrix(res, r1, c2);
+
+    return 0;
+}
+Enter the number of rows and columns for the first matrix: 2 3
+Enter the number of rows and columns for the second matrix: 3 2
+Enter the elements of the first matrix:
+1 2 3
+4 5 6
+Enter the elements of the second matrix:
+7 8
+9 10
+11 12
+Resultant matrix after multiplication:
+58 64
+139 154
+
+5.Write a program that reads a 2D metrices and checks if the metrices is a symmetric metrics or not.
+#include <stdio.h>
+#include <stdbool.h>
+
+// Function to read a matrix
+void readMatrix(int matrix[][10], int rows, int cols) {
+    printf("Enter the elements of the matrix:\n");
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            scanf("%d", &matrix[i][j]);
+        }
+    }
+}
+
+// Function to print a matrix
+void printMatrix(int matrix[][10], int rows, int cols) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            printf("%d ", matrix[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+// Function to check if a matrix is symmetric
+bool isSymmetric(int matrix[][10], int size) {
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            if (matrix[i][j] != matrix[j][i]) {
+                return false; // Matrix is not symmetric
+            }
+        }
+    }
+    return true; // Matrix is symmetric
+}
+
+int main() {
+    int matrix[10][10];
+    int rows, cols;
+
+    // Read matrix dimensions
+    printf("Enter the number of rows and columns of the matrix: ");
+    scanf("%d %d", &rows, &cols);
+
+    // Check if matrix is square
+    if (rows != cols) {
+        printf("Matrix is not square, hence it cannot be symmetric.\n");
+        return 1;
+    }
+
+    // Read the matrix
+    printf("Enter the elements of the matrix:\n");
+    readMatrix(matrix, rows, cols);
+
+    // Print the matrix
+    printf("The entered matrix is:\n");
+    printMatrix(matrix, rows, cols);
+
+    // Check if the matrix is symmetric
+    if (isSymmetric(matrix, rows)) {
+        printf("The matrix is symmetric.\n");
+    } else {
+        printf("The matrix is not symmetric.\n");
+    }
+
+    return 0;
+}
+Enter the number of rows and columns of the matrix: 3 3
+Enter the elements of the matrix:
+1 2 3
+2 4 5
+3 5 6
+The entered matrix is:
+1 2 3
+2 4 5
+3 5 6
+The matrix is symmetric.
+6.Write a program to display a number of elements.Memory should be allocated dynamically using malloc().
+#include <stdio.h>
+#include <stdlib.h> // For malloc() and free()
+
+int main() {
+    int *arr; // Pointer to hold the dynamically allocated array
+    int num_elements;
+
+    // Read the number of elements
+    printf("Enter the number of elements: ");
+    scanf("%d", &num_elements);
+
+    // Allocate memory for the array dynamically
+    arr = (int *)malloc(num_elements * sizeof(int));
+
+    // Check if memory allocation was successful
+    if (arr == NULL) {
+        printf("Memory allocation failed.\n");
+        return 1; // Exit the program with an error code
+    }
+
+    // Initialize the array with some values (for demonstration)
+    for (int i = 0; i < num_elements; i++) {
+        arr[i] = i + 1; // Just filling with numbers 1, 2, ..., num_elements
+    }
+
+    // Display the number of elements
+    printf("The number of elements is: %d\n", num_elements);
+
+    // Display the elements of the array
+    printf("Array elements are:\n");
+    for (int i = 0; i < num_elements; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    // Free the allocated memory
+    free(arr);
+
+    return 0;
+}
+Enter the number of elements: 5
+The number of elements is: 5
+Array elements are:
+1 2 3 4 5 
+7.Write a program to display n number of elements. Memory should be allocated
+dynamically using calloc( ).
+#include <stdio.h>
+#include <stdlib.h> // For calloc() and free()
+
+int main() {
+    int *arr; // Pointer to hold the dynamically allocated array
+    int num_elements;
+
+    // Read the number of elements
+    printf("Enter the number of elements: ");
+    scanf("%d", &num_elements);
+
+    // Allocate memory for the array dynamically using calloc
+    arr = (int *)calloc(num_elements, sizeof(int));
+
+    // Check if memory allocation was successful
+    if (arr == NULL) {
+        printf("Memory allocation failed.\n");
+        return 1; // Exit the program with an error code
+    }
+
+    // Initialize the array with values
+    printf("Enter %d elements:\n", num_elements);
+    for (int i = 0; i < num_elements; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    // Display the number of elements
+    printf("The number of elements is: %d\n", num_elements);
+
+    // Display the elements of the array
+    printf("Array elements are:\n");
+    for (int i = 0; i < num_elements; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    // Free the allocated memory
+    free(arr);
+
+    return 0;
+}
+Enter the number of elements: 4
+Enter 4 elements:
+10
+20
+30
+40
+The number of elements is: 4
+Array elements are:
+10 20 30 40 
+8.Write a program to allocate memory using malloc ( ) and then reallocate the previously
+allocated memory using realloc( ). Display the elements which have been taken after
+reallocation.
+#include <stdio.h>
+#include <stdlib.h> // For malloc(), realloc(), free()
+
+int main() {
+    int *arr; // Pointer to hold the dynamically allocated array
+    int initial_size, new_size;
+// Read the initial number of elements
+    printf("Enter the initial number of elements: ");
+    scanf("%d", &initial_size);
+
+    // Allocate memory for the array dynamically using malloc
+    arr = (int *)malloc(initial_size * sizeof(int));
+
+   
+    if (arr == NULL) {
+        printf("Memory allocation failed.\n");
+        return 1; // Exit the program with an error code
+    }
+
+   
+    printf("Enter %d initial elements:\n", initial_size);
+    for (int i = 0; i < initial_size; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    
+    printf("Initial array elements:\n");
+    for (int i = 0; i < initial_size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+ 
+    printf("Enter the new number of elements (greater than or equal to %d): ", initial_size);
+    scanf("%d", &new_size);
+
+ 
+    arr = (int *)realloc(arr, new_size * sizeof(int));
+
+   
+    if (arr == NULL) {
+        printf("Memory reallocation failed.\n");
+        return 1; // Exit the program with an error code
+    }
+
+   
+    if (new_size > initial_size) {
+        printf("Enter %d additional elements:\n", new_size - initial_size);
+        for (int i = initial_size; i < new_size; i++) {
+            scanf("%d", &arr[i]);
+        }
+    }
+
+   
+    printf("Array elements after reallocation:\n");
+    for (int i = 0; i < new_size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+  
+    free(arr);
+
+    return 0;
+}
+Enter the initial number of elements: 3
+Enter 3 initial elements:
+1 2 3
+Initial array elements:
+1 2 3 
+Enter the new number of elements (greater than or equal to 3): 5
+Enter 2 additional elements:
+4 5
+Array elements after reallocation:
+1 2 3 4 5 
+9.. Write a program to allocate memory using calloc( ) and then reallocate the previously
+allocated memory using realloc( ). Display the elements which have been taken after realloaction.
+#include <stdio.h>
+#include <stdlib.h> // For calloc(), realloc(), free()
+
+int main() {
+    int *arr; // Pointer to hold the dynamically allocated array
+    int initial_size, new_size;
+
+  
+    printf("Enter the initial number of elements: ");
+    scanf("%d", &initial_size);
+
+    
+    arr = (int *)calloc(initial_size, sizeof(int));
+
+  
+    if (arr == NULL) {
+        printf("Memory allocation failed.\n");
+        return 1; // Exit the program with an error code
+    }
+
+   
+    printf("Enter %d initial elements:\n", initial_size);
+    for (int i = 0; i < initial_size; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+   
+    printf("Initial array elements:\n");
+    for (int i = 0; i < initial_size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+   
+    printf("Enter the new number of elements (greater than or equal to %d): ", initial_size);
+    scanf("%d", &new_size);
+
+    
+    arr = (int *)realloc(arr, new_size * sizeof(int));
+
+    
+    if (arr == NULL) {
+        printf("Memory reallocation failed.\n");
+        return 1; // Exit the program with an error code
+    }
+
+    
+    if (new_size > initial_size) {
+        printf("Enter %d additional elements:\n", new_size - initial_size);
+        for (int i = initial_size; i < new_size; i++) {
+            scanf("%d", &arr[i]);
+        }
+    }
+
+   
+    printf("Array elements after reallocation:\n");
+    for (int i = 0; i < new_size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+  
+    free(arr);
+
+    return 0;
+}
+Enter the initial number of elements: 3
+Enter 3 initial elements:
+1 2 3
+Initial array elements:
+1 2 3 
+Enter the new number of elements (greater than or equal to 3): 5
+Enter 2 additional elements:
+4 5
+Array elements after reallocation:
+1 2 3 4 5 
+10.Write a C program to search an element in an Array using dynamic memory allocation.
+#include <stdio.h>
+#include <stdlib.h> // For malloc(), free()
+
+
+int searchElement(int *arr, int size, int key) {
+    for (int i = 0; i < size; i++) {
+        if (arr[i] == key) {
+            return i; // Return the index where the element is found
+        }
+    }
+    return -1; // Return -1 if the element is not found
+}
+
+int main() {
+    int *arr;       // Pointer to hold the dynamically allocated array
+    int num_elements, key, index;
+
+  
+    printf("Enter the number of elements: ");
+    scanf("%d", &num_elements);
+
+  
+    arr = (int *)malloc(num_elements * sizeof(int));
+
+   
+    if (arr == NULL) {
+        printf("Memory allocation failed.\n");
+        return 1; // Exit the program with an error code
+    }
+
+   
+    printf("Enter %d elements:\n", num_elements);
+    for (int i = 0; i < num_elements; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+   
+    printf("Enter the element to search: ");
+    scanf("%d", &key);
+
+    
+    index = searchElement(arr, num_elements, key);
+
+    
+    if (index != -1) {
+        printf("Element %d found at index %d.\n", key, index);
+    } else {
+        printf("Element %d not found in the array.\n", key);
+    }
+
+   
+    free(arr);
+
+    return 0;
+}
+Enter the number of elements: 5
+Enter 5 elements:
+10
+20
+30
+40
+50
+Enter the element to search: 60
+Element 60 not found in the array.
+
+
+
 
