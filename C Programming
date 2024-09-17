@@ -897,6 +897,580 @@ int power(int base, int exponent) {
 
 
 
+Pointers:-
+1.Write a c program to create,initialize and use pointers.
+#include <stdio.h>
+
+int main() {
+    
+    int num = 10;
+    
+    
+    int *ptr;
+
+    
+    ptr = &num;
+
+    
+    printf("The value of num is: %d\n", *ptr);
+
+    
+    printf("The address of num is: %p\n", (void*)ptr);
+
+    
+    *ptr = 20;
+
+    
+    printf("The new value of num is: %d\n", num);
+
+    
+    printf("The address of num is still: %p\n", (void*)ptr);
+
+    return 0;
+}
+Output:-The value of num is: 10
+The address of num is: 0x7ffee1e3d88c
+The new value of num is: 20
+The address of num is still: 0x7ffee1e3d88c
+
+2.Write a C program to add two numbers using Pointers.
+#include <stdio.h>
+
+
+void addNumbers(int *a, int *b, int *result) {
+    *result = *a + *b;  // Dereference pointers to access values and compute the sum
+}
+
+int main() {
+    int num1, num2, sum;
+
+    
+    printf("Enter the first number: ");
+    scanf("%d", &num1);
+
+    printf("Enter the second number: ");
+    scanf("%d", &num2);
+
+    
+    addNumbers(&num1, &num2, &sum);
+
+    
+    printf("The sum of %d and %d is: %d\n", num1, num2, sum);
+
+    return 0;
+}
+Output-Enter the first number: 7
+Enter the second number: 15
+The sum of 7 and 15 is: 22
+
+3.Write a C program to swap two numbers using Pointers.
+#include <stdio.h>
+
+
+void swap(int *a, int *b) {
+    int temp; 
+    temp = *a;
+    *a = *b;   
+    *b = temp; 
+}
+
+int main() {
+    int num1, num2;
+
+    
+    printf("Enter the first number: ");
+    scanf("%d", &num1);
+
+    printf("Enter the second number: ");
+    scanf("%d", &num2);
+
+    
+    printf("Before swapping:\n");
+    printf("First number: %d\n", num1);
+    printf("Second number: %d\n", num2);
+
+    
+    swap(&num1, &num2);
+
+   
+    printf("After swapping:\n");
+    printf("First number: %d\n", num1);
+    printf("Second number: %d\n", num2);
+
+    return 0;
+}
+Output-Enter the first number: 5
+Enter the second number: 10
+Before swapping:
+First number: 5
+Second number: 10
+After swapping:
+First number: 10
+Second number: 5
+
+4.Write a C program to input and print array elements using Pointers.
+#include <stdio.h>
+
+int main() {
+    int arr[5];  
+    int *ptr;    
+
+    
+    ptr = arr;
+
+    
+    printf("Enter 5 integers:\n");
+    for (int i = 0; i < 5; i++) {
+        printf("Element %d: ", i);
+        scanf("%d", (ptr + i));  // Use pointer arithmetic to input values
+    }
+
+    
+    printf("Array elements are:\n");
+    for (int i = 0; i < 5; i++) {
+        printf("Element %d: %d\n", i, *(ptr + i));  // Use pointer arithmetic to access values
+    }
+
+    return 0;
+}
+Output-Enter 5 integers:
+Element 0: 10
+Element 1: 20
+Element 2: 30
+Element 3: 40
+Element 4: 50
+Array elements are:
+Element 0: 10
+Element 1: 20
+Element 2: 30
+Element 3: 40
+Element 4: 50
+
+5.Write a C program to copy one array to another using Pointers.
+#include <stdio.h>
+
+int main() {
+    int sourceArray[5];   // Source array to be copied
+    int destinationArray[5];  // Destination array where contents will be copied
+    int *srcPtr;          // Pointer to the source array
+    int *destPtr;         // Pointer to the destination array
+
+    
+    srcPtr = sourceArray;
+    destPtr = destinationArray;
+
+    
+    printf("Enter 5 integers for the source array:\n");
+    for (int i = 0; i < 5; i++) {
+        printf("Element %d: ", i);
+        scanf("%d", (srcPtr + i));  // Use pointer arithmetic to input values
+    }
+
+    
+    for (int i = 0; i < 5; i++) {
+        *(destPtr + i) = *(srcPtr + i);  // Use pointer arithmetic to copy values
+    }
+
+    
+    printf("Elements of the destination array are:\n");
+    for (int i = 0; i < 5; i++) {
+        printf("Element %d: %d\n", i, *(destPtr + i));  // Use pointer arithmetic to access values
+    }
+
+    return 0;
+}
+Output-Enter 5 integers for the source array:
+Element 0: 1
+Element 1: 2
+Element 2: 3
+Element 3: 4
+Element 4: 5
+Elements of the destination array are:
+Element 0: 1
+Element 1: 2
+Element 2: 3
+Element 3: 4
+Element 4: 5
+
+6.Write a C program to swap two arrays using pointers.
+#include <stdio.h>
+
+
+void swapArrays(int *arr1, int *arr2, int size) {
+    int temp; // Temporary variable for swapping
+
+    for (int i = 0; i < size; i++) {
+        temp = *(arr1 + i); // Store the current element of arr1 in temp
+        *(arr1 + i) = *(arr2 + i); // Copy the current element of arr2 to arr1
+        *(arr2 + i) = temp; // Copy the value of temp (original arr1 element) to arr2
+    }
+}
+
+int main() {
+    int size = 5; // Define the size of the arrays
+    int array1[5]; // First array
+    int array2[5]; // Second array
+
+    
+    printf("Enter 5 integers for the first array:\n");
+    for (int i = 0; i < size; i++) {
+        printf("Element %d: ", i);
+        scanf("%d", &array1[i]);
+    }
+
+    
+    printf("Enter 5 integers for the second array:\n");
+    for (int i = 0; i < size; i++) {
+        printf("Element %d: ", i);
+        scanf("%d", &array2[i]);
+    }
+
+    
+    printf("Before swapping:\n");
+    printf("First array: ");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", array1[i]);
+    }
+    printf("\n");
+
+    printf("Second array: ");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", array2[i]);
+    }
+    printf("\n");
+
+    
+    swapArrays(array1, array2, size);
+
+    
+    printf("After swapping:\n");
+    printf("First array: ");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", array1[i]);
+    }
+    printf("\n");
+
+    printf("Second array: ");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", array2[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
+Output-Enter 5 integers for the first array:
+Element 0: 1
+Element 1: 2
+Element 2: 3
+Element 3: 4
+Element 4: 5
+Enter 5 integers for the second array:
+Element 0: 10
+Element 1: 20
+Element 2: 30
+Element 3: 40
+Element 4: 50
+Before swapping:
+First array: 1 2 3 4 5 
+Second array: 10 20 30 40 50 
+After swapping:
+First array: 10 20 30 40 50 
+Second array: 1 2 3 4 5 
+
+7.Write a C program to reverse an array using pointers.
+#include <stdio.h>
+
+
+void reverseArray(int *arr, int size) {
+    int *start = arr;              // Pointer to the start of the array
+    int *end = arr + size - 1;     // Pointer to the end of the array
+    int temp;
+
+    
+    while (start < end) {
+        temp = *start;  // Store the value at start in temp
+        *start = *end;  // Copy the value at end to start
+        *end = temp;    // Copy the value in temp to end
+        start++;        // Move start pointer forward
+        end--;          // Move end pointer backward
+    }
+}
+
+int main() {
+    int size;
+
+    
+    printf("Enter the size of the array: ");
+    scanf("%d", &size);
+
+    int array[size];  
+
+    
+    printf("Enter %d integers:\n", size);
+    for (int i = 0; i < size; i++) {
+        printf("Element %d: ", i);
+        scanf("%d", &array[i]);
+    }
+
+    
+    printf("Array before reversing:\n");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", array[i]);
+    }
+    printf("\n");
+
+    
+    reverseArray(array, size);
+
+    
+    printf("Array after reversing:\n");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", array[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
+Output-Enter the size of the array: 5
+Enter 5 integers:
+Element 0: 1
+Element 1: 2
+Element 2: 3
+Element 3: 4
+Element 4: 5
+Array before reversing:
+1 2 3 4 5 
+Array after reversing:
+5 4 3 2 1 
+
+8.Write a C program to search an element in array using pointers.
+#include <stdio.h>
+
+
+int searchElement(int *arr, int size, int target) {
+    for (int i = 0; i < size; i++) {
+        if (*(arr + i) == target) {  // Compare the target with the current array element
+            return i;  // Return the index if the target is found
+        }
+    }
+    return -1;  // Return -1 if the target is not found
+}
+
+int main() {
+    int size;
+    int target;
+    int index;
+
+    
+    printf("Enter the size of the array: ");
+    scanf("%d", &size);
+
+    int array[size];  
+
+    
+    printf("Enter %d integers:\n", size);
+    for (int i = 0; i < size; i++) {
+        printf("Element %d: ", i);
+        scanf("%d", &array[i]);
+    }
+
+    
+    printf("Enter the element to search for: ");
+    scanf("%d", &target);
+
+    
+    index = searchElement(array, size, target);
+
+    
+    if (index != -1) {
+        printf("Element %d found at index %d.\n", target, index);
+    } else {
+        printf("Element %d not found in the array.\n", target);
+    }
+
+    return 0;
+}
+9.Write a C program to access two dimensional array using pointers.
+#include <stdio.h>
+
+int main() {
+    int rows, cols;
+
+    
+    printf("Enter the number of rows: ");
+    scanf("%d", &rows);
+
+    printf("Enter the number of columns: ");
+    scanf("%d", &cols);
+
+    
+    int array[rows][cols];
+
+    
+    int *ptr = (int *)array;
+
+    
+    printf("Enter the elements of the %dx%d array:\n", rows, cols);
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            printf("Element [%d][%d]: ", i, j);
+            scanf("%d", (ptr + i * cols + j));  // Accessing elements using pointer arithmetic
+        }
+    }
+
+    
+    printf("The elements of the %dx%d array are:\n", rows, cols);
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            printf("%d ", *(ptr + i * cols + j));  // Accessing elements using pointer arithmetic
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
+Output-Enter the number of rows: 2
+Enter the number of columns: 3
+Enter the elements of the 2x3 array:
+Element [0][0]: 1
+Element [0][1]: 2
+Element [0][2]: 3
+Element [1][0]: 4
+Element [1][1]: 5
+Element [1][2]: 6
+The elements of the 2x3 array are:
+1 2 3 
+4 5 6 
+
+10.Write a C program to add two matrix and multiply two matrix using pointers.
+#include <stdio.h>
+
+
+void addMatrices(int *a, int *b, int *result, int rows, int cols) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            *(result + i * cols + j) = *(a + i * cols + j) + *(b + i * cols + j);
+        }
+    }
+}
+
+
+void multiplyMatrices(int *a, int *b, int *result, int rowsA, int colsA, int colsB) {
+    for (int i = 0; i < rowsA; i++) {
+        for (int j = 0; j < colsB; j++) {
+            *(result + i * colsB + j) = 0;
+            for (int k = 0; k < colsA; k++) {
+                *(result + i * colsB + j) += *(a + i * colsA + k) * *(b + k * colsB + j);
+            }
+        }
+    }
+}
+
+int main() {
+    int rowsA, colsA, rowsB, colsB;
+
+    
+    printf("Enter the number of rows and columns for matrix A: ");
+    scanf("%d %d", &rowsA, &colsA);
+
+    int matrixA[rowsA][colsA];
+    int *ptrA = (int *)matrixA;
+
+    
+    printf("Enter elements for matrix A:\n");
+    for (int i = 0; i < rowsA; i++) {
+        for (int j = 0; j < colsA; j++) {
+            printf("Element [%d][%d]: ", i, j);
+            scanf("%d", (ptrA + i * colsA + j));
+        }
+    }
+
+    
+    printf("Enter the number of rows and columns for matrix B: ");
+    scanf("%d %d", &rowsB, &colsB);
+
+    int matrixB[rowsB][colsB];
+    int *ptrB = (int *)matrixB;
+
+    
+    printf("Enter elements for matrix B:\n");
+    for (int i = 0; i < rowsB; i++) {
+        for (int j = 0; j < colsB; j++) {
+            printf("Element [%d][%d]: ", i, j);
+            scanf("%d", (ptrB + i * colsB + j));
+        }
+    }
+
+    
+    if (rowsA != rowsB || colsA != colsB) {
+        printf("Matrices must have the same dimensions to be added.\n");
+    } else {
+        int resultAdd[rowsA][colsA];
+        int *ptrResultAdd = (int *)resultAdd;
+
+        
+        addMatrices(ptrA, ptrB, ptrResultAdd, rowsA, colsA);
+
+        
+        printf("Result of addition:\n");
+        for (int i = 0; i < rowsA; i++) {
+            for (int j = 0; j < colsA; j++) {
+                printf("%d ", *(ptrResultAdd + i * colsA + j));
+            }
+            printf("\n");
+        }
+    }
+
+    
+    if (colsA != rowsB) {
+        printf("Number of columns in A must be equal to the number of rows in B to multiply.\n");
+    } else {
+        int resultMul[rowsA][colsB];
+        int *ptrResultMul = (int *)resultMul;
+
+        
+        multiplyMatrices(ptrA, ptrB, ptrResultMul, rowsA, colsA, colsB);
+
+        
+        printf("Result of multiplication:\n");
+        for (int i = 0; i < rowsA; i++) {
+            for (int j = 0; j < colsB; j++) {
+                printf("%d ", *(ptrResultMul + i * colsB + j));
+            }
+            printf("\n");
+        }
+    }
+
+    return 0;
+}
+Output-Enter the number of rows and columns for matrix A: 2 3
+Enter elements for matrix A:
+Element [0][0]: 1
+Element [0][1]: 2
+Element [0][2]: 3
+Element [1][0]: 4
+Element [1][1]: 5
+Element [1][2]: 6
+Enter the number of rows and columns for matrix B: 2 3
+Enter elements for matrix B:
+Element [0][0]: 7
+Element [0][1]: 8
+Element [0][2]: 9
+Element [1][0]: 10
+Element [1][1]: 11
+Element [1][2]: 12
+Result of addition:
+8 10 12 
+14 16 18 
+Number of columns in A must be equal to the number of rows in B to multiply.
+
+
+
+
+
+
+
+
 
 
 
