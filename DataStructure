@@ -957,6 +957,1368 @@ Enter 5 elements:
 Enter the element to search: 60
 Element 60 not found in the array.
 
+Assignment-3
+1.Write a Menu driven C program to accomplish  the following functionalities in single linked list.
+a.Create a single linked list.
+#include <stdio.h>
+#include <stdlib.h>
+
+// Node structure definition
+struct Node {
+    int data;           // Data stored in the node
+    struct Node* next;  // Pointer to the next node
+};
+
+// Function to create a new node
+struct Node* createNode(int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->next = NULL;
+    return newNode;
+}
+
+// Function to insert a new node at the end of the linked list
+void insert(struct Node** head, int data) {
+    struct Node* newNode = createNode(data);
+    
+    // If the list is empty, make the new node the head
+    if (*head == NULL) {
+        *head = newNode;
+        return;
+    }
+
+    // Otherwise, find the last node and insert the new node
+    struct Node* temp = *head;
+    while (temp->next != NULL) {
+        temp = temp->next;
+    }
+    temp->next = newNode;
+}
+
+// Function to print the linked list
+void display(struct Node* head) {
+    struct Node* temp = head;
+    while (temp != NULL) {
+        printf("%d -> ", temp->data);
+        temp = temp->next;
+    }
+    printf("NULL\n");
+}
+
+// Example usage
+int main() {
+    struct Node* head = NULL;  // Initialize an empty list
+    
+    insert(&head, 10);  // Insert data into the list
+    insert(&head, 20);
+    insert(&head, 30);
+
+    display(head);  // Output: 10 -> 20 -> 30 -> NULL
+
+    return 0;
+}
+Output-10 -> 20 -> 30 -> NULL
+
+b.Display the elements of a single linked list.
+#include <stdio.h>
+#include <stdlib.h>
+
+// Node structure definition
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+// Function to create a new node
+struct Node* createNode(int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->next = NULL;
+    return newNode;
+}
+
+// Function to insert a new node at the end of the linked list
+void insert(struct Node** head, int data) {
+    struct Node* newNode = createNode(data);
+
+    if (*head == NULL) {
+        *head = newNode;
+        return;
+    }
+
+    struct Node* temp = *head;
+    while (temp->next != NULL) {
+        temp = temp->next;
+    }
+    temp->next = newNode;
+}
+
+// Function to display elements of the linked list
+void display(struct Node* head) {
+    struct Node* temp = head;
+    while (temp != NULL) {
+        printf("%d -> ", temp->data);
+        temp = temp->next;
+    }
+    printf("NULL\n");
+}
+
+// Example usage
+int main() {
+    struct Node* head = NULL;  // Initialize an empty list
+
+    insert(&head, 10);  // Insert elements into the list
+    insert(&head, 20);
+    insert(&head, 30);
+
+    display(head);  // Output: 10 -> 20 -> 30 -> NULL
+
+    return 0;
+}
+Output=10 -> 20 -> 30 -> NULL
+c.Insert a node at the beginning of a single linked list.
+#include <stdio.h>
+#include <stdlib.h>
+
+// Node structure definition
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+// Function to create a new node
+struct Node* createNode(int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->next = NULL;
+    return newNode;
+}
+
+// Function to insert a new node at the beginning of the linked list
+void insertAtBeginning(struct Node** head, int data) {
+    struct Node* newNode = createNode(data);
+    
+    newNode->next = *head;  // New node points to the old head
+    *head = newNode;        // The head now points to the new node
+}
+
+// Function to display elements of the linked list
+void display(struct Node* head) {
+    struct Node* temp = head;
+    while (temp != NULL) {
+        printf("%d -> ", temp->data);
+        temp = temp->next;
+    }
+    printf("NULL\n");
+}
+
+// Example usage
+int main() {
+    struct Node* head = NULL;  // Initialize an empty list
+
+    // Insert nodes at the
+Output-10 -> 20 -> 30 -> NULL
+d.Insert a node at the beginning of a single linked list.
+#include <stdio.h>
+#include <stdlib.h>
+
+// Node structure definition
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+// Function to create a new node
+struct Node* createNode(int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->next = NULL;
+    return newNode;
+}
+
+// Function to insert a new node at the beginning of the linked list
+void insertAtBeginning(struct Node** head, int data) {
+    struct Node* newNode = createNode(data);  // Create a new node
+    newNode->next = *head;  // New node's next points to the current head
+    *head = newNode;  // Head is updated to the new node
+}
+
+// Function to display elements of the linked list
+void display(struct Node* head) {
+    struct Node* temp = head;
+    while (temp != NULL) {
+        printf("%d -> ", temp->data);
+        temp = temp->next;
+    }
+    printf("NULL\n");
+}
+
+// Example usage
+int main() {
+    struct Node* head = NULL;  // Initialize an empty list
+
+    // Insert nodes at the beginning
+    insertAtBeginning(&head, 30);  // List becomes: 30 ->
+Output-10 -> 20 -> 30 -> NULL
+e.Insert a node before a given node of a single linked list.
+#include <stdio.h>
+#include <stdlib.h>
+
+// Node structure definition
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+// Function to create a new node
+struct Node* createNode(int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->next = NULL;
+    return newNode;
+}
+
+// Function to insert a new node before a given node
+void insertBefore(struct Node** head, int targetData, int newData) {
+    struct Node* newNode = createNode(newData);  // Create the new node
+
+    // Case 1: List is empty
+    if (*head == NULL) {
+        printf("List is empty.\n");
+        return;
+    }
+
+    // Case 2: Target node is the head
+    if ((*head)->data == targetData) {
+        newNode->next = *head;
+        *head = newNode;
+        return;
+    }
+
+    // Case 3: Find the target node
+    struct Node* current = *head;
+    struct Node* previous = NULL;
+
+    while (current != NULL && current->data != targetData) {
+        previous = current;
+        current = current->next;
+    }
+
+    // If the target node is not found
+    if (current == NULL) {
+        printf("Node with data %d not found.\n", targetData);
+        free(newNode);
+        return;
+    }
+
+    // Insert the new node before the target node
+    previous->next = newNode;
+    newNode->next = current;
+}
+
+// Function to display elements of the linked list
+void display(struct Node* head) {
+    struct Node* temp = head;
+    while (temp != NULL) {
+        printf("%d -> ", temp->data);
+        temp = temp->next;
+    }
+    printf("NULL\n");
+}
+
+// Example usage
+int main() {
+    struct Node* head = NULL;  // Initialize an empty list
+
+    // Insert nodes manually
+    head = createNode(10);
+    head->next = createNode(20);
+    head->next->next = createNode(30);
+    head->next->next->next = createNode(40);
+
+    printf("Original List: ");
+    display(head);  // Output: 10 -> 20 -> 30 -> 40 -> NULL
+
+    // Insert before a given node
+    insertBefore(&head, 30, 25);  // Insert 25 before 30
+    printf("After inserting 25 before 30: ");
+    display(head);  // Output: 10 -> 20 -> 25 -> 30 -> 40 -> NULL
+
+    insertBefore(&head, 10, 5);   // Insert 5 before 10 (head)
+    printf("After inserting 5 before 10: ");
+    display(head);  // Output: 5 -> 10 -> 20 -> 25 -> 30 -> 40 -> NULL
+
+    return 0;
+}
+Output-Original List: 10 -> 20 -> 30 -> 40 -> NULL
+After inserting 25 before 30: 10 -> 20 -> 25 -> 30 -> 40 -> NULL
+After inserting 5 before 10: 5 -> 10 -> 20 -> 25 -> 30 -> 40 -> NULL
+
+f.Insert a node after a given node of a single linked list.
+#include <stdio.h>
+#include <stdlib.h>
+
+// Node structure definition
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+// Function to create a new node
+struct Node* createNode(int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->next = NULL;
+    return newNode;
+}
+
+// Function to insert a new node after a given node
+void insertAfter(struct Node* givenNode, int newData) {
+    if (givenNode == NULL) {
+        printf("The given node cannot be NULL.\n");
+        return;
+    }
+
+    struct Node* newNode = createNode(newData);  // Create the new node
+    newNode->next = givenNode->next;  // New node's next points to the given node's next
+    givenNode->next = newNode;  // Given node's next points to the new node
+}
+
+// Function to display elements of the linked list
+void display(struct Node* head) {
+    struct Node* temp = head;
+    while (temp != NULL) {
+        printf("%d -> ", temp->data);
+        temp = temp->next;
+    }
+    printf("NULL\n");
+}
+
+// Example usage
+int main() {
+    struct Node* head = NULL;  // Initialize an empty list
+
+    // Insert nodes manually
+    head = createNode(10);
+    head->next = createNode(20);
+    head->next->next = createNode(30);
+    head->next->next->next = createNode(40);
+
+    printf("Original List: ");
+    display(head);  // Output: 10 -> 20 -> 30 -> 40 -> NULL
+
+    // Insert after a given node
+    insertAfter(head->next, 25);  // Insert 25 after 20
+    printf("After inserting 25 after 20: ");
+    display(head);  // Output: 10 -> 20 -> 25 -> 30 -> 40 -> NULL
+
+    insertAfter(head->next->next->next, 35);  // Insert 35 after 30
+    printf("After inserting 35 after 30: ");
+    display(head);  // Output: 10 -> 20 -> 25 -> 30 -> 35 -> 40 -> NULL
+
+    return 0;
+}
+Output-Original List: 10 -> 20 -> 30 -> 40 -> NULL
+After inserting 25 after 20: 10 -> 20 -> 25 -> 30 -> 40 -> NULL
+After inserting 35 after 30: 10 -> 20 -> 25 -> 30 -> 35 -> 40 -> NULL
+
+g.Delete a node from the beginning of a single linked list.
+#include <stdio.h>
+#include <stdlib.h>
+
+// Node structure definition
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+// Function to create a new node
+struct Node* createNode(int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->next = NULL;
+    return newNode;
+}
+
+// Function to delete a node from the beginning of the linked list
+void deleteFromBeginning(struct Node** head) {
+    if (*head == NULL) {
+        printf("List is empty. No node to delete.\n");
+        return;
+    }
+
+    struct Node* temp = *head;  // Store the current head
+    *head = (*head)->next;      // Update head to the next node
+    free(temp);                 // Free the memory of the old head
+}
+
+// Function to display elements of the linked list
+void display(struct Node* head) {
+    struct Node* temp = head;
+    while (temp != NULL) {
+        printf("%d -> ", temp->data);
+        temp = temp->next;
+    }
+    printf("NULL\n");
+}
+
+// Example usage
+int main() {
+    struct Node* head = NULL;  // Initialize an empty list
+
+    // Insert nodes manually
+    head = createNode(10);
+    head->next = createNode(20);
+    head->next->next = createNode(30);
+    head->next->next->next = createNode(40);
+
+    printf("Original List: ");
+    display(head);  // Output: 10 -> 20 -> 30 -> 40 -> NULL
+
+    // Delete a node from the beginning
+    deleteFromBeginning(&head);
+    printf("After deleting the first node: ");
+    display(head);  // Output: 20 -> 30 -> 40 -> NULL
+
+    deleteFromBeginning(&head);
+    printf("After deleting another node: ");
+    display(head);  // Output: 30 -> 40 -> NULL
+
+    deleteFromBeginning(&head);
+    printf("After deleting another node: ");
+    display(head);  // Output: 40 -> NULL
+
+    deleteFromBeginning(&head);
+    printf("After deleting another node: ");
+    display(head);  // Output: List is empty. No node to delete.
+
+    return 0;
+}
+Output-Original List: 10 -> 20 -> 30 -> 40 -> NULL
+After deleting the first node: 20 -> 30 -> 40 -> NULL
+After deleting another node: 30 -> 40 -> NULL
+After deleting another node: 40 -> NULL
+After deleting another node: List is empty. No node to delete.
+
+h.Delete a node from the end of a single linked list.
+#include <stdio.h>
+#include <stdlib.h>
+
+// Node structure definition
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+// Function to create a new node
+struct Node* createNode(int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->next = NULL;
+    return newNode;
+}
+
+// Function to delete a node from the end of the linked list
+void deleteFromEnd(struct Node** head) {
+    if (*head == NULL) {
+        printf("List is empty. No node to delete.\n");
+        return;
+    }
+
+    // Case when there is only one node
+    if ((*head)->next == NULL) {
+        free(*head);  // Free the single node
+        *head = NULL; // Update head to NULL
+        return;
+    }
+
+    struct Node* current = *head;
+    struct Node* previous = NULL;
+
+    // Traverse to the second-to-last node
+    while (current->next != NULL) {
+        previous = current;
+        current = current->next;
+    }
+
+    // Now, previous points to the second-to-last node
+    previous->next = NULL;  // Update the next pointer of the second-to-last node
+    free(current);          // Free the last node
+}
+
+// Function to display elements of the linked list
+void display(struct Node* head) {
+    struct Node* temp = head;
+    while (temp != NULL) {
+        printf("%d -> ", temp->data);
+        temp = temp->next;
+    }
+    printf("NULL\n");
+}
+
+// Example usage
+int main() {
+    struct Node* head = NULL;  // Initialize an empty list
+
+    // Insert nodes manually
+    head = createNode(10);
+    head->next = createNode(20);
+    head->next->next = createNode(30);
+    head->next->next->next = createNode(40);
+
+    printf("Original List: ");
+    display(head);  // Output: 10 -> 20 -> 30 -> 40 -> NULL
+
+    // Delete a node from the end
+    deleteFromEnd(&head);
+    printf("After deleting the last node: ");
+    display(head);  // Output: 10 -> 20 -> 30 -> NULL
+
+    deleteFromEnd(&head);
+    printf("After deleting another node: ");
+    display(head);  // Output: 10 -> 20 -> NULL
+
+    deleteFromEnd(&head);
+    printf("After deleting another node: ");
+    display(head);  // Output: 10 -> NULL
+
+    deleteFromEnd(&head);
+    printf("After deleting another node: ");
+    display(head);  // Output: List is empty. No node to delete.
+
+    return 0;
+}
+Output-Original List: 10 -> 20 -> 30 -> 40 -> NULL
+After deleting the last node: 10 -> 20 -> 30 -> NULL
+After deleting another node: 10 -> 20 -> NULL
+After deleting another node: 10 -> NULL
+After deleting another node: List is empty. No node to delete.
+
+i.Delete a node after a given node of a single linked list.
+#include <stdio.h>
+#include <stdlib.h>
+
+// Node structure definition
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+// Function to create a new node
+struct Node* createNode(int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->next = NULL;
+    return newNode;
+}
+
+// Function to delete a node after a given node
+void deleteAfter(struct Node* givenNode) {
+    if (givenNode == NULL) {
+        printf("The given node cannot be NULL.\n");
+        return;
+    }
+
+    // Check if there is a node to delete after the given node
+    struct Node* nodeToDelete = givenNode->next;
+    if (nodeToDelete == NULL) {
+        printf("No node to delete after the given node.\n");
+        return;
+    }
+
+    // Adjust pointers and free memory
+    givenNode->next = nodeToDelete->next;  // Skip the node to be deleted
+    free(nodeToDelete);                     // Free the memory of the deleted node
+}
+
+// Function to display elements of the linked list
+void display(struct Node* head) {
+    struct Node* temp = head;
+    while (temp != NULL) {
+        printf("%d -> ", temp->data);
+        temp = temp->next;
+    }
+    printf("NULL\n");
+}
+
+// Example usage
+int main() {
+    struct Node* head = NULL;  // Initialize an empty list
+
+    // Insert nodes manually
+    head = createNode(10);
+    head->next = createNode(20);
+    head->next->next = createNode(30);
+    head->next->next->next = createNode(40);
+
+    printf("Original List: ");
+    display(head);  // Output: 10 -> 20 -> 30 -> 40 -> NULL
+
+    // Delete the node after a given node
+    deleteAfter(head);  // Delete the node after 10
+    printf("After deleting the node after 10: ");
+    display(head);  // Output: 10 -> 30 -> 40 -> NULL
+
+    deleteAfter(head->next);  // Delete the node after 30
+    printf("After deleting the node after 30: ");
+    display(head);  // Output: 10 -> 30 -> NULL
+
+    // Try to delete after the last node
+    deleteAfter(head->next);  // Attempt to delete after 30
+    printf("After trying to delete after 30: ");
+    display(head);  // Output: 10 -> 30 -> NULL
+
+    return 0;
+}
+Output-Original List: 10 -> 20 -> 30 -> 40 -> NULL
+After deleting the node after 10: 10 -> 30 -> 40 -> NULL
+After deleting the node after 30: 10 -> 30 -> NULL
+No node to delete after the given node.
+After trying to delete after 30: 10 -> 30 -> NULL
+
+j.Delete a entire single linked list.
+#include <stdio.h>
+#include <stdlib.h>
+
+// Node structure definition
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+// Function to create a new node
+struct Node* createNode(int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->next = NULL;
+    return newNode;
+}
+
+// Function to delete the entire linked list
+void deleteList(struct Node** head) {
+    struct Node* current = *head;
+    struct Node* nextNode;
+
+    while (current != NULL) {
+        nextNode = current->next; // Store the next node
+        free(current);            // Free the current node
+        current = nextNode;       // Move to the next node
+    }
+
+    *head = NULL; // Update head to NULL to indicate the list is empty
+}
+
+// Function to display elements of the linked list
+void display(struct Node* head) {
+    struct Node* temp = head;
+    while (temp != NULL) {
+        printf("%d -> ", temp->data);
+        temp = temp->next;
+    }
+    printf("NULL\n");
+}
+
+// Example usage
+int main() {
+    struct Node* head = NULL;  // Initialize an empty list
+
+    // Insert nodes manually
+    head = createNode(10);
+    head->next = createNode(20);
+    head->next->next = createNode(30);
+    head->next->next->next = createNode(40);
+
+    printf("Original List: ");
+    display(head);  // Output: 10 -> 20 -> 30 -> 40 -> NULL
+
+    // Delete the entire linked list
+    deleteList(&head);
+    printf("After deleting the entire list: ");
+    display(head);  // Output: NULL
+
+    return 0;
+}
+Output-Original List: 10 -> 20 -> 30 -> 40 -> NULL
+After deleting the entire list: NULL
+
+
+2.Write a Menu driven C program to accomplish the following functionalities in circular linked list.
+a.Create a circular linked list.
+#include <stdio.h>
+#include <stdlib.h>
+
+// Node structure definition
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+// Function to create a new node
+struct Node* createNode(int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->next = NULL;
+    return newNode;
+}
+
+// Function to insert a node at the end of the circular linked list
+void insertEnd(struct Node** head, int data) {
+    struct Node* newNode = createNode(data);
+    
+    if (*head == NULL) {
+        *head = newNode;  // If the list is empty, set the new node as head
+        newNode->next = *head; // Point it to itself
+    } else {
+        struct Node* temp = *head;
+        while (temp->next != *head) {
+            temp = temp->next; // Traverse to the last node
+        }
+        temp->next = newNode; // Link the last node to the new node
+        newNode->next = *head; // Point new node to head
+    }
+}
+
+// Function to display elements of the circular linked list
+void display(struct Node* head) {
+    if (head == NULL) {
+        printf("List is empty.\n");
+        return;
+    }
+
+    struct Node* temp = head;
+    do {
+        printf("%d -> ", temp->data);
+        temp = temp->next;
+    } while (temp != head);
+    printf("(back to head: %d)\n", head->data);
+}
+
+// Example usage
+int main() {
+    struct Node* head = NULL;  // Initialize an empty circular linked list
+
+    // Insert nodes into the circular linked list
+    insertEnd(&head, 10);
+    insertEnd(&head, 20);
+    insertEnd(&head, 30);
+    insertEnd(&head, 40);
+
+    printf("Circular Linked List: ");
+    display(head);  // Output: 10 -> 20 -> 30 -> 40 -> (back to head: 10)
+
+    return 0;
+}
+Output-Circular Linked List: 10 -> 20 -> 30 -> 40 -> (back to head: 10)
+
+b.Display the elements of a circular linked list.
+#include <stdio.h>
+#include <stdlib.h>
+
+// Node structure definition
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+// Function to create a new node
+struct Node* createNode(int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->next = NULL;
+    return newNode;
+}
+
+// Function to insert a node at the end of the circular linked list
+void insertEnd(struct Node** head, int data) {
+    struct Node* newNode = createNode(data);
+    
+    if (*head == NULL) {
+        *head = newNode;  // If the list is empty, set the new node as head
+        newNode->next = *head; // Point it to itself
+    } else {
+        struct Node* temp = *head;
+        while (temp->next != *head) {
+            temp = temp->next; // Traverse to the last node
+        }
+        temp->next = newNode; // Link the last node to the new node
+        newNode->next = *head; // Point new node to head
+    }
+}
+
+// Function to display elements of the circular linked list
+void display(struct Node* head) {
+    if (head == NULL) {
+        printf("List is empty.\n");
+        return;
+    }
+
+    struct Node* temp = head;
+    do {
+        printf("%d -> ", temp->data);
+        temp = temp->next;
+    } while (temp != head);
+    printf("(back to head: %d)\n", head->data);
+}
+
+// Example usage
+int main() {
+    struct Node* head = NULL;  // Initialize an empty circular linked list
+
+    // Insert nodes into the circular linked list
+    insertEnd(&head, 10);
+    insertEnd(&head, 20);
+    insertEnd(&head, 30);
+    insertEnd(&head, 40);
+
+    printf("Circular Linked List: ");
+    display(head);  // Output: 10 -> 20 -> 30 -> 40 -> (back to head: 10)
+
+    return 0;
+}
+Output-Circular Linked List: 10 -> 20 -> 30 -> 40 -> (back to head: 10)
+c.Insert a node at the beginning of a circular linked list.
+#include <stdio.h>
+#include <stdlib.h>
+
+// Node structure definition
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+// Function to create a new node
+struct Node* createNode(int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->next = NULL;
+    return newNode;
+}
+
+// Function to insert a node at the beginning of the circular linked list
+void insertBeginning(struct Node** head, int data) {
+    struct Node* newNode = createNode(data);
+
+    if (*head == NULL) {
+        *head = newNode;  // If the list is empty, set the new node as head
+        newNode->next = *head; // Point it to itself
+    } else {
+        struct Node* temp = *head;
+        
+        // Traverse to the last node
+        while (temp->next != *head) {
+            temp = temp->next;
+        }
+        
+        newNode->next = *head; // Point new node to current head
+        temp->next = newNode;   // Link the last node to the new node
+        *head = newNode;        // Update head to the new node
+    }
+}
+
+// Function to display elements of the circular linked list
+void display(struct Node* head) {
+    if (head == NULL) {
+        printf("List is empty.\n");
+        return;
+    }
+
+    struct Node* temp = head;
+    do {
+        printf("%d -> ", temp->data);
+        temp = temp->next;
+    } while (temp != head);
+    printf("(back to head: %d)\n", head->data);
+}
+
+// Example usage
+int main() {
+    struct Node* head = NULL;  // Initialize an empty circular linked list
+
+    // Insert nodes into the circular linked list
+    insertBeginning(&head, 20);
+    insertBeginning(&head, 30);
+    insertBeginning(&head, 10); // Inserting at the beginning
+    insertBeginning(&head, 40);
+
+    printf("Circular Linked List after insertions: ");
+    display(head);  // Output: 40 -> 10 -> 20 -> 30 -> (back to head: 40)
+
+    return 0;
+}
+Output-Circular Linked List after insertions: 40 -> 10 -> 20 -> 30 -> (back to head: 40)
+d.Insert a node at the end of a circular linked list.
+#include <stdio.h>
+#include <stdlib.h>
+
+// Node structure definition
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+// Function to create a new node
+struct Node* createNode(int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->next = NULL;
+    return newNode;
+}
+
+// Function to insert a node at the end of the circular linked list
+void insertEnd(struct Node** head, int data) {
+    struct Node* newNode = createNode(data);
+    
+    if (*head == NULL) {
+        // If the list is empty, set the new node as head
+        *head = newNode;
+        newNode->next = *head; // Point it to itself
+    } else {
+        struct Node* temp = *head;
+        // Traverse to the last node
+        while (temp->next != *head) {
+            temp = temp->next;
+        }
+        temp->next = newNode; // Link the last node to the new node
+        newNode->next = *head; // Point the new node to head
+    }
+}
+
+// Function to display elements of the circular linked list
+void display(struct Node* head) {
+    if (head == NULL) {
+        printf("List is empty.\n");
+        return;
+    }
+
+    struct Node* temp = head;
+    do {
+        printf("%d -> ", temp->data);
+        temp = temp->next;
+    } while (temp != head);
+    printf("(back to head: %d)\n", head->data);
+}
+
+// Example usage
+int main() {
+    struct Node* head = NULL;  // Initialize an empty circular linked list
+
+    // Insert nodes into the circular linked list
+    insertEnd(&head, 10);
+    insertEnd(&head, 20);
+    insertEnd(&head, 30);
+    insertEnd(&head, 40);
+
+    printf("Circular Linked List after insertions: ");
+    display(head);  // Output: 10 -> 20 -> 30 -> 40 -> (back to head: 10)
+
+    return 0;
+}
+Output-Circular Linked List after insertions: 10 -> 20 -> 30 -> 40 -> (back to head: 10)
+e.Delete a node from the beginning of a circular linked list.
+#include <stdio.h>
+#include <stdlib.h>
+
+// Node structure definition
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+// Function to create a new node
+struct Node* createNode(int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->next = NULL;
+    return newNode;
+}
+
+// Function to insert a node at the end of the circular linked list
+void insertEnd(struct Node** head, int data) {
+    struct Node* newNode = createNode(data);
+    
+    if (*head == NULL) {
+        // If the list is empty, set the new node as head
+        *head = newNode;
+        newNode->next = *head; // Point it to itself
+    } else {
+        struct Node* temp = *head;
+        // Traverse to the last node
+        while (temp->next != *head) {
+            temp = temp->next;
+        }
+        temp->next = newNode; // Link the last node to the new node
+        newNode->next = *head; // Point the new node to head
+    }
+}
+
+// Function to delete a node from the beginning of the circular linked list
+void deleteBeginning(struct Node** head) {
+    if (*head == NULL) {
+        printf("List is empty. No nodes to delete.\n");
+        return;
+    }
+    
+    struct Node* temp = *head;
+    
+    // If there's only one node in the list
+    if (temp->next == *head) {
+        free(temp); // Free the only node
+        *head = NULL; // Update head to NULL
+    } else {
+        struct Node* last = *head;
+        // Find the last node
+        while (last->next != *head) {
+            last = last->next;
+        }
+        // Update head and the last node's next pointer
+        *head = temp->next; // Move head to the next node
+        last->next = *head; // Update the last node's next to new head
+        free(temp); // Free the old head
+    }
+}
+
+// Function to display elements of the circular linked list
+void display(struct Node* head) {
+    if (head == NULL) {
+        printf("List is empty.\n");
+        return;
+    }
+
+    struct Node* temp = head;
+    do {
+        printf("%d -> ", temp->data);
+        temp = temp->next;
+    } while (temp != head);
+    printf("(back to head: %d)\n", head->data);
+}
+
+// Example usage
+int main() {
+    struct Node* head = NULL;  // Initialize an empty circular linked list
+
+    // Insert nodes into the circular linked list
+    insertEnd(&head, 10);
+    insertEnd(&head, 20);
+    insertEnd(&head, 30);
+    insertEnd(&head, 40);
+
+    printf("Circular Linked List before deletion: ");
+    display(head);  // Output: 10 -> 20 -> 30 -> 40 -> (back to head: 10)
+
+    // Delete a node from the beginning
+    deleteBeginning(&head);
+    printf("Circular Linked List after deleting the beginning node: ");
+    display(head);  // Output: 20 -> 30 -> 40 -> (back to head: 20)
+
+    return 0;
+}
+Output-Circular Linked List before deletion: 10 -> 20 -> 30 -> 40 -> (back to head: 10)
+Circular Linked List after deleting the beginning node: 20 -> 30 -> 40 -> (back to head: 20)
+
+f.Delete a node from the end of a circular linked list.
+#include <stdio.h>
+#include <stdlib.h>
+
+// Node structure definition
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+// Function to create a new node
+struct Node* createNode(int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->next = NULL;
+    return newNode;
+}
+
+// Function to insert a node at the end of the circular linked list
+void insertEnd(struct Node** head, int data) {
+    struct Node* newNode = createNode(data);
+    
+    if (*head == NULL) {
+        // If the list is empty, set the new node as head
+        *head = newNode;
+        newNode->next = *head; // Point it to itself
+    } else {
+        struct Node* temp = *head;
+        // Traverse to the last node
+        while (temp->next != *head) {
+            temp = temp->next;
+        }
+        temp->next = newNode; // Link the last node to the new node
+        newNode->next = *head; // Point the new node to head
+    }
+}
+
+// Function to delete a node from the end of the circular linked list
+void deleteEnd(struct Node** head) {
+    if (*head == NULL) {
+        printf("List is empty. No nodes to delete.\n");
+        return;
+    }
+    
+    struct Node* temp = *head;
+    
+    // If there's only one node in the list
+    if (temp->next == *head) {
+        free(temp); // Free the only node
+        *head = NULL; // Update head to NULL
+    } else {
+        struct Node* prev = NULL;
+        // Traverse to the last node
+        while (temp->next != *head) {
+            prev = temp;
+            temp = temp->next;
+        }
+        // Update the second-to-last node's next pointer
+        prev->next = *head; // Point it to head
+        free(temp); // Free the last node
+    }
+}
+
+// Function to display elements of the circular linked list
+void display(struct Node* head) {
+    if (head == NULL) {
+        printf("List is empty.\n");
+        return;
+    }
+
+    struct Node* temp = head;
+    do {
+        printf("%d -> ", temp->data);
+        temp = temp->next;
+    } while (temp != head);
+    printf("(back to head: %d)\n", head->data);
+}
+
+// Example usage
+int main() {
+    struct Node* head = NULL;  // Initialize an empty circular linked list
+
+    // Insert nodes into the circular linked list
+    insertEnd(&head, 10);
+    insertEnd(&head, 20);
+    insertEnd(&head, 30);
+    insertEnd(&head, 40);
+
+    printf("Circular Linked List before deletion: ");
+    display(head);  // Output: 10 -> 20 -> 30 -> 40 -> (back to head: 10)
+
+    // Delete a node from the end
+    deleteEnd(&head);
+    printf("Circular Linked List after deleting the last node: ");
+    display(head);  // Output: 10 -> 20 -> 30 -> (back to head: 10)
+
+    return 0;
+}
+Output-Circular Linked List before deletion: 10 -> 20 -> 30 -> 40 -> (back to head: 10)
+Circular Linked List after deleting the last node: 10 -> 20 -> 30 -> (back to head: 10)
+g.Delete a node after a given node of a circular linked list.
+#include <stdio.h>
+#include <stdlib.h>
+
+// Node structure definition
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+// Function to create a new node
+struct Node* createNode(int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->next = NULL;
+    return newNode;
+}
+
+// Function to insert a node at the end of the circular linked list
+void insertEnd(struct Node** head, int data) {
+    struct Node* newNode = createNode(data);
+    
+    if (*head == NULL) {
+        // If the list is empty, set the new node as head
+        *head = newNode;
+        newNode->next = *head; // Point it to itself
+    } else {
+        struct Node* temp = *head;
+        // Traverse to the last node
+        while (temp->next != *head) {
+            temp = temp->next;
+        }
+        temp->next = newNode; // Link the last node to the new node
+        newNode->next = *head; // Point the new node to head
+    }
+}
+
+// Function to delete a node after a given node
+void deleteAfterNode(struct Node* head, struct Node* givenNode) {
+    if (head == NULL || givenNode == NULL || givenNode->next == head) {
+        printf("No node to delete after the given node.\n");
+        return;
+    }
+
+    struct Node* temp = givenNode->next;
+    if (temp == head) {
+        // If the next node is the head, update the next pointer of the given node
+        givenNode->next = head; // Set the given node's next to head
+    } else {
+        givenNode->next = temp->next; // Bypass the node to be deleted
+    }
+
+    free(temp); // Free the node to be deleted
+}
+
+// Function to display elements of the circular linked list
+void display(struct Node* head) {
+    if (head == NULL) {
+        printf("List is empty.\n");
+        return;
+    }
+
+    struct Node* temp = head;
+    do {
+        printf("%d -> ", temp->data);
+        temp = temp->next;
+    } while (temp != head);
+    printf("(back to head: %d)\n", head->data);
+}
+
+// Example usage
+int main() {
+    struct Node* head = NULL;  // Initialize an empty circular linked list
+
+    // Insert nodes into the circular linked list
+    insertEnd(&head, 10);
+    insertEnd(&head, 20);
+    insertEnd(&head, 30);
+    insertEnd(&head, 40);
+
+    printf("Circular Linked List before deletion: ");
+    display(head);  // Output: 10 -> 20 -> 30 -> 40 -> (back to head: 10)
+
+    // Deleting a node after the first node
+    deleteAfterNode(head, head); // Delete node after head (which is 20)
+    printf("Circular Linked List after deleting node after head: ");
+    display(head);  // Output: 10 -> 30 -> 40 -> (back to head: 10)
+
+    return 0;
+}
+Output-Circular Linked List before deletion: 10 -> 20 -> 30 -> 40 -> (back to head: 10)
+Circular Linked List after deleting node after head: 10 -> 30 -> 40 -> (back to head: 10)
+h.Delete a entire circular linked list.
+#include <stdio.h>
+#include <stdlib.h>
+
+// Node structure definition
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+// Function to create a new node
+struct Node* createNode(int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->next = NULL;
+    return newNode;
+}
+
+// Function to insert a node at the end of the circular linked list
+void insertEnd(struct Node** head, int data) {
+    struct Node* newNode = createNode(data);
+    
+    if (*head == NULL) {
+        // If the list is empty, set the new node as head
+        *head = newNode;
+        newNode->next = *head; // Point it to itself
+    } else {
+        struct Node* temp = *head;
+        // Traverse to the last node
+        while (temp->next != *head) {
+            temp = temp->next;
+        }
+        temp->next = newNode; // Link the last node to the new node
+        newNode->next = *head; // Point the new node to head
+    }
+}
+
+// Function to delete an entire circular linked list
+void deleteList(struct Node** head) {
+    if (*head == NULL) {
+        printf("List is empty. No nodes to delete.\n");
+        return;
+    }
+
+    struct Node* current = *head;
+    struct Node* nextNode;
+
+    // Traverse the list and free each node
+    do {
+        nextNode = current->next; // Store the next node
+        free(current); // Free the current node
+        current = nextNode; // Move to the next node
+    } while (current != *head);
+
+    *head = NULL; // Set head to NULL after deletion
+    printf("All nodes deleted successfully.\n");
+}
+
+// Function to display elements of the circular linked list
+void display(struct Node* head) {
+    if (head == NULL) {
+        printf("List is empty.\n");
+        return;
+    }
+
+    struct Node* temp = head;
+    do {
+        printf("%d -> ", temp->data);
+        temp = temp->next;
+    } while (temp != head);
+    printf("(back to head: %d)\n", head->data);
+}
+
+// Example usage
+int main() {
+    struct Node* head = NULL;  // Initialize an empty circular linked list
+
+    // Insert nodes into the circular linked list
+    insertEnd(&head, 10);
+    insertEnd(&head, 20);
+    insertEnd(&head, 30);
+    insertEnd(&head, 40);
+
+    printf("Circular Linked List before deletion: ");
+    display(head);  // Output: 10 -> 20 -> 30 -> 40 -> (back to head: 10)
+
+    // Delete the entire circular linked list
+    deleteList(&head);
+    printf("Circular Linked List after deletion: ");
+    display(head);  // Output: List is empty.
+
+    return 0;
+}
+Output-Circular Linked List before deletion: 10 -> 20 -> 30 -> 40 -> (back to head: 10)
+All nodes deleted successfully.
+Circular Linked List after deletion: List is empty.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
